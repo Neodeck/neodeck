@@ -23,6 +23,12 @@ class DecksController < ApplicationController
     @title = "Import Deck"
   end
 
+  def select
+    validate_logged_in
+    @title = "Select Deck"
+    @user = current_user
+  end
+
   def import_deck
     validate_logged_in
     imported_deck = JSON.parse(params[:imported_deck][:json], :symbolize_names => true)

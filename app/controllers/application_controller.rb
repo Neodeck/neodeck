@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def validate_logged_in
     unless current_user
-      redirect_to auth_path
+      redirect_to auth_path(:then => request.path)
     end
   end
 end

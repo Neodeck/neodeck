@@ -175,10 +175,17 @@ var CAHCreator = (function(){
     document.title = title + " // <%= $site_title %>"
   };
 
+  var selectDeck = function(id){
+    window.opener.postMessage({
+      deck: id
+    }, "*");
+  };
+
   return {
     setAuthToken: setAuthToken,
     setSession: setSession,
     startEdit: startEdit,
-    setTitle: setTitle
+    setTitle: setTitle,
+    selectDeck: selectDeck
   };
 }());

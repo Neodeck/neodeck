@@ -1,0 +1,11 @@
+<h1>Select Deck</h1>
+
+<p>
+  Select one of your decks to use in a Cards Against Equestria game.
+</p>
+
+<div class="decks">
+  <% @user.decks.order("id DESC").each do |deck| %>
+    <%= render partial: "decks/module_selector", locals: { deck: deck } %>
+  <% end %>
+</div>
