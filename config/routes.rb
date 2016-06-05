@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'auth' => 'auth#auth'
   post 'signup' => 'auth#newuser'
 
+  get 'decks/import' => 'decks#import'
+  post 'decks/import' => 'decks#import_deck'
   resources :decks
   resources :users
 

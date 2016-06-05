@@ -1,0 +1,14 @@
+<h1>Import Deck</h1>
+
+<p>
+  If you have some exported JSON from the old CAH Creator, you can import it here:
+</p>
+
+<%= form_for :imported_deck do |form| %>
+  <p>
+    <%= form.text_area :json, :style => "width: 100%; height: 100px;" %>
+  </p>
+  <p>
+    <%= form.button "Import" %>
+  </p>
+<% end %>
