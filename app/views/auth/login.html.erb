@@ -1,0 +1,12 @@
+<div class="login-box card black">
+  <%= form_for :user do |form| %>
+    My email is <%= form.text_field :email %> and my
+    password is <%= form.password_field :password %>.
+    <%= form.button "Sign In" %>
+  <% end %>
+  <span class="black-card-pick-number">Pick 2</span>
+</div>
+
+<p class="center">
+  <%= link_to "I don't have an account", signup_path %>
+</p>

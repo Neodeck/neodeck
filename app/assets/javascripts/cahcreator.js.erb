@@ -1,0 +1,184 @@
+var CAHCreator = (function(){
+  var authToken,
+      sessionId,
+      sessionToken,
+      socket,
+      deck,
+      hostname,
+      deckId;
+
+  var setAuthToken = function(token){
+    authToken = token;
+  };
+
+  var setSession = function(id, token){
+    sessionId = id;
+    sessionToken = token;
+    connect();
+  };
+
+  var renderBlackCard = function(card, index){
+    var $card = $("<div class='card black'></div>");
+    var $textarea = $("<textarea>");
+    var $pick = $("<input class='black-card-pick-number'></input>");
+    $textarea.val(card.text);
+    var edit = function(){
+      // console.log($textarea.val());
+      socket.emit("deck:card:black:edit", {
+        index: index,
+        text: $textarea.val(),
+        pick: $pick.val()
+      });
+    };
+    $textarea.on("keyup", edit);
+    // $card.text(card.text);
+    $card.append($textarea);
+    $card.attr("data-deck-index", index);
+    $pick.val(card.pick);
+    $pick.on("keyup", edit);
+    $card.append($pick);
+    return $card;
+  };
+
+  var addBlackCard = function(card, index){
+    index = (index !== undefined ? index : deck.black_cards.length - 1);
+    var rendered = renderBlackCard(card, index);
+    $(".black-cards").append(rendered);
+  };
+
+  var renderWhiteCard = function(card, index){
+    var $card = $("<div class='card white'></div>");
+    var $textarea = $("<textarea>");
+    $textarea.val(card);
+    $textarea.on("keyup", function(){
+      socket.emit("deck:card:white:edit", {
+        index: index,
+        text: $textarea.val()
+      });
+    });
+    $card.append($textarea);
+    $card.attr("data-deck-index", index);
+    return $card;
+  };
+
+  var addWhiteCard = function(card, index){
+    index = (index !== undefined ? index : deck.white_cards.length - 1);
+    var rendered = renderWhiteCard(card, index);
+    $(".white-cards").append(rendered);
+  };
+
+  var save = function(){
+    window.onbeforeunload = function(){};
+    $("#save").text("Saving...").prop("disabled", true);
+    socket.emit("deck:save");
+  };
+
+  var connect = function(){
+    console.log("Attempting connection to realtime server...");
+    socket = io.connect("ws://localhost:8080");
+
+    socket.on("hello", function(){
+      if(authToken){
+        console.log("Received hello, attempting authentication as user...");
+        socket.emit("authenticate", authToken);
+      }else{
+        console.log("No auth token found, attempting anonymous authentication with session id/token pair...");
+        socket.emit("authenticate:session", {
+          sessionId: sessionId,
+          sessionToken: sessionToken
+        });
+      }
+    });
+
+    socket.on("authenticated", function(user){
+      console.log("Successfully authenticated as user...");
+      if(deckId) socket.emit("deck:load", deckId);
+    });
+
+    socket.on("session", function(session){
+      window.onbeforeunload = function(){
+        return "If you leave the page, all of your work will be gone!";
+      };
+      console.log("Received session info from realtime server.", session);
+      $("#realtime-status").remove();
+      $(".editor-url").text("http://" + location.host + "/session/" + session.sessionId + "/" + session.sessionToken);
+      deckId = session.deck.id;
+      deck = session.deck;
+      session.deck.black_cards.forEach(addBlackCard);
+      session.deck.white_cards.forEach(addWhiteCard);
+      $("#deck-name").val(session.deck.name);
+      setTitle("Editing " + session.deck.name);
+      $(".deck-details").slideDown();
+    });
+
+    socket.on("deck:card:black", function(card){
+      deck.black_cards.push(card);
+      addBlackCard(card);
+    });
+
+    socket.on("deck:card:black:edit", function(card){
+      deck.black_cards[card.index] = { text: card.text, pick: card.pick };
+      $(".card.black[data-deck-index=" + card.index + "] textarea").val(card.text);
+      $(".card.black[data-deck-index=" + card.index + "] input").val(card.pick);
+    });
+
+    socket.on("deck:card:white", function(card){
+      deck.white_cards.push(card);
+      addWhiteCard(card);
+    });
+
+    socket.on("deck:card:white:edit", function(card){
+      deck.white_cards[card.index] = card.text;
+      $(".card.white[data-deck-index=" + card.index + "] textarea").val(card.text);
+    });
+
+    socket.on("session:end", function(){
+      window.onbeforeunload = function(){};
+      window.location = "/decks/" + deckId;
+    });
+
+    socket.on("deck:name", function(name){
+      $("#deck-name").val(name);
+      setTitle("Editing " + name);
+    });
+
+    $("#save").click(save);
+
+    $("#deck-name").on("keyup", function(){
+      socket.emit("deck:name", $("#deck-name").val());
+      setTitle("Editing " + $("#deck-name").val());
+    });
+
+    $("#new-black-card-input, #new-black-card-pick-input").keypress(function(e){
+      if(e.keyCode === 13){
+        e.preventDefault();
+        socket.emit("deck:card:black", { text: $("#new-black-card-input").val(), pick: $("#new-black-card-pick-input").val() });
+        $("#new-black-card-input, #new-black-card-pick-input").val("");
+      }
+    });
+
+    $("#new-white-card-input, #new-white-card-pick-input").keypress(function(e){
+      if(e.keyCode === 13){
+        e.preventDefault();
+        socket.emit("deck:card:white", $("#new-white-card-input").val());
+        $("#new-white-card-input").val("");
+      }
+    });
+  };
+
+  var startEdit = function(id){
+    deckId = id;
+    connect();
+  };
+
+  var setTitle = function(title){
+    document.title = title + " // <%= $site_title %>"
+  };
+
+  return {
+    setAuthToken: setAuthToken,
+    setSession: setSession,
+    startEdit: startEdit,
+    setTitle: setTitle
+  };
+}());

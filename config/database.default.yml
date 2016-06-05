@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  url: postgres://good:db
+
+test:
+  <<: *default
+  database: CAHCreator_test
+
+production:
+  <<: *default
+  database: CAHCreator_production
+  username: CAHCreator
+  password: <%= ENV['CAHCREATOR_DATABASE_PASSWORD'] %>

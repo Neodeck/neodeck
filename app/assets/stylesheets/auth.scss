@@ -1,0 +1,35 @@
+.login-box{
+  width: 300px !important;
+  height: 300px !important;
+  margin: 0 auto !important;
+  font-size: 1.5em !important;
+  display: block !important;
+
+  label{
+    display: block;
+  }
+
+  input{
+    border: none;
+    border-bottom: 1px solid white;
+    background: none;
+    font-size: 1em;
+    outline: none;
+    width: 150px;
+    color: white;
+  }
+
+  button{
+    background: none;
+    border: none;
+    color: white;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-decoration: underline;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+  }
+}

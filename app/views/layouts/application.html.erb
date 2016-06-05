@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= if @title then "#{@title} // " end %><%= $site_title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="http://localhost:8080/socket.io/socket.io.js" charset="utf-8"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="content">
+    <header>
+      <div class="header-inner">
+        <%= link_to "CAH Creator", root_path %>
+        <div class="header-pull-right">
+          <% if current_user %>
+            <%= link_to "New Deck", new_deck_path %> //
+            <%= link_to "My Account", current_user %> //
+            <%= link_to "Log Out", logout_path %>
+          <% else %>
+            <%= link_to "Log In", auth_path %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <div class="content-body">
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        &copy; TJ Horner <%= link_to "and contributors", "https://github.com/CAHCreator/cah-creator/graphs/contributors" %> 2015-2016 //
+        <%= link_to "Donate", donate_path %>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

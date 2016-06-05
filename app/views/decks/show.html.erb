@@ -1,0 +1,39 @@
+<h1>Deck: <%= @deck.name %></h1>
+
+<p>
+  Created by <%= link_to @deck.user.name, @deck.user %>
+</p>
+
+<p>
+  Deck ID: <%= @deck.id %> (this is shown for legacy reasons)
+</p>
+
+<% if current_user == @deck.user %>
+  <p>
+    <%= link_to "Edit this deck", edit_deck_path(@deck) %>
+  </p>
+<% end %>
+
+<h3>Black Cards</h3>
+<% if @deck.black_cards.count != 0 %>
+  <% @deck.black_cards.each do |card| %>
+    <%= render partial: "cards/black", locals: { card: card } %>
+  <% end %>
+<% else %>
+  <i>There's nothing here...</i>
+  <% if current_user == @deck.user %>
+    To add some cards, <%= link_to "edit the deck", edit_deck_path(@deck) %>!
+  <% end %>
+<% end %>
+
+<h3>White Cards</h3>
+<% if @deck.white_cards.count != 0 %>
+  <% @deck.white_cards.each do |card| %>
+    <%= render partial: "cards/white", locals: { card: card } %>
+  <% end %>
+<% else %>
+  <i>There's nothing here...</i>
+  <% if current_user == @deck.user %>
+    To add some cards, <%= link_to "edit the deck", edit_deck_path(@deck) %>!
+  <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<h1><%= @user.name %>'s Decks</h1>
+
+<p>
+  <%= @user.name %> has created <%= @user.decks.count %> decks.
+  <% if @user.admin %>
+    They are also an admin of CAH Creator.
+  <% end %>
+</p>
+
+<div class="decks">
+  <% @user.decks.order("id DESC").each do |deck| %>
+    <%= render partial: "decks/module", locals: { deck: deck } %>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+<div class="login-box card black">
+  <%= form_for :user, url: signup_path do |form| %>
+    My email is <%= form.email_field :email, :required => true %> and my
+    password is <%= form.password_field :password, :required => true %>.
+    My name is <%= form.text_field :name, :required => true %>.
+    <%= form.button "Sign Up" %>
+  <% end %>
+  <span class="black-card-pick-number">Pick 3</span>
+</div>
+
+<p class="center">
+  <%= link_to "I have an account already", auth_path %>
+</p>

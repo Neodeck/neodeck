@@ -1,0 +1,35 @@
+<h1>Editing Deck: <input id="deck-name" value="<%= @deck.name %>"></input></h1>
+
+<div id="realtime-status" class="center">
+  <h3>Creating real-time session...</h3>
+</div>
+
+<div class="deck-details" style="display: none">
+  <p>
+    <button id="save">Save Deck</button>
+  </p>
+
+  <p>
+    Editor URL: <span class="editor-url"></span>
+  </p>
+
+  <h3>Black Cards</h3>
+  <div class="black-cards">
+    <div class="card black">
+      <textarea placeholder="Create a new black card" id="new-black-card-input"></textarea>
+      <input id="new-black-card-pick-input" placeholder="Pick #" type="number">
+    </div>
+  </div>
+
+  <h3>White Cards</h3>
+  <div class="white-cards">
+    <div class="card white">
+      <textarea placeholder="Create a new white card" id="new-white-card-input"></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+  CAHCreator.setAuthToken("<%= current_user.socket_auth_token %>");
+  CAHCreator.startEdit("<%= @deck.id %>");
+</script>
