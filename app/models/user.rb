@@ -8,13 +8,15 @@ class User < ActiveRecord::Base
 
   def generate_token
     self.socket_auth_token = SecureRandom.hex
+    self.admin ||= false
   end
 
   def api_safe
     {
       id: self.id,
       name: self.name,
-      email: self.email
+      email: self.email,
+      admin: self.admin
     }
   end
 end
