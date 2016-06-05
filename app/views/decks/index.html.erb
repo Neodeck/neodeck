@@ -1,1 +1,7 @@
 <h1>Latest Public Decks</h1>
+
+<div class="decks">
+  <% Deck.order("id DESC").limit(18).each do |deck| %>
+    <%= render partial: "decks/module", locals: { deck: deck } %>
+  <% end %>
+</div>
