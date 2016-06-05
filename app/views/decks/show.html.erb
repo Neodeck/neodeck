@@ -8,7 +8,7 @@
   Deck ID: <%= @deck.id %> (this is shown for legacy reasons)
 </p>
 
-<% if current_user == @deck.user %>
+<% if current_user == @deck.user || current_user.admin %>
   <p>
     <%= link_to "Edit this deck", edit_deck_path(@deck) %>
   </p>
