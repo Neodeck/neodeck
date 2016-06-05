@@ -41,7 +41,7 @@ class DecksController < ApplicationController
   def edit
     @deck = Deck.find(params[:id])
     @title = "Editing #{@deck.name}"
-    unless @deck && current_user == @deck.user
+    unless @deck && current_user == @deck.user || current_user.admin
       redirect_to root_path
     end
   end
