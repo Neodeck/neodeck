@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :name
   has_many :decks
-  before_create :generate_token
+  after_initialize :default_values
 
-  def generate_token
+  def default_values
     self.socket_auth_token = SecureRandom.hex
     self.admin ||= false
   end
