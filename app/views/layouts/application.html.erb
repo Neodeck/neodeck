@@ -4,7 +4,7 @@
   <title><%= if @title then "#{@title} // " end %><%= $site_title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="http://localhost:8080/socket.io/socket.io.js" charset="utf-8"></script>
+  <script src="http://<%= $socket_host %>/socket.io/socket.io.js" charset="utf-8"></script>
   <%= csrf_meta_tags %>
 </head>
 <body data-no-turbolink>
