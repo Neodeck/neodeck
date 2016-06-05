@@ -78,4 +78,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   $site_title = "CAH Creator"
+  $socket_host = "socket.cahcreator.com"
 end

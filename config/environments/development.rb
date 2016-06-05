@@ -37,6 +37,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   $site_title = "CAH Creator Development"
+  $socket_host = "localhost:8080"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

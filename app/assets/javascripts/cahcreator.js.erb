@@ -75,7 +75,7 @@ var CAHCreator = (function(){
 
   var connect = function(){
     console.log("Attempting connection to realtime server...");
-    socket = io.connect("ws://localhost:8080");
+    socket = io.connect("ws://<%= $socket_host %>");
 
     socket.on("hello", function(){
       if(authToken){
