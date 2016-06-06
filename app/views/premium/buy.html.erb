@@ -1,0 +1,56 @@
+<h1>Premium Accounts</h1>
+
+<p>
+  So you want to buy Premium, eh? Or maybe you're just wondering what it is.
+  Well, it includes these never-before-seen features:
+</p>
+
+<ul>
+  <li>Lift 3-deck limit</li>
+  <li>Allow more than 2 simultaneous editors</li>
+  <li><a href="http://i.imgur.com/tvfrkXt.png" target="_blank">Cool badge on your profile</a></li>
+  <li>Good vibes</li>
+  <li>Support the site!</li>
+</ul>
+
+<h2>Giveaways</h2>
+
+<p>
+  I'm planning on doing Premium giveaways since this isn't really my main job
+  and just a side project so, uh, look out for those I guess.
+</p>
+
+<h2>Purchase</h2>
+
+<% if current_user.premium %>
+  <p>
+    It looks like you already have Premium. Nice! If you want to throw more money
+    at us, take a gander at the <%= link_to "donate page", donate_path %>.
+  </p>
+<% else %>
+  <p>
+    Premium is a flat, one-time $9.99 payment. There aren't any fees or taxes.
+    Your payment is secured by <%= link_to "Stripe", "https://stripe.com" %> so
+    we never see your credit card number.
+  </p>
+
+  <% if current_user.premium_override_price %>
+    <p>
+      <b>Wow!</b> It looks like an admin has changed the price of Premium, <i>just for you</i>!
+    </p>
+  <% end %>
+
+  <form action="" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= $stripe_pub_key %>"
+      data-amount="<%= current_user.premium_price %>"
+      data-name="CAH Creator"
+      data-description="Premium Account"
+      data-bitcoin="true"
+      data-email="<%= current_user.email %>"
+      data-image="https://avatars3.githubusercontent.com/u/15242410?v=3&s=200"
+      data-locale="auto">
+    </script>
+  </form>
+<% end %>

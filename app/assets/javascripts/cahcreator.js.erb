@@ -75,7 +75,7 @@ var CAHCreator = (function(){
 
   var connect = function(){
     console.log("Attempting connection to realtime server...");
-    socket = io.connect("wss://<%= $socket_host %>");
+    socket = io.connect("ws://<%= $socket_host %>");
 
     socket.on("hello", function(){
       if(authToken){
@@ -140,6 +140,11 @@ var CAHCreator = (function(){
     socket.on("deck:name", function(name){
       $("#deck-name").val(name);
       setTitle("Editing " + name);
+    });
+
+    socket.on("session:needpremium", function(){
+      alert("Sorry, you can't edit this deck since there are already 2 editors editing. To lift this limit, tell the owner of this deck to purchase Premium!");
+      window.location = "/";
     });
 
     $("#save").click(save);

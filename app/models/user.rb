@@ -7,8 +7,16 @@ class User < ActiveRecord::Base
   after_initialize :default_values
 
   def default_values
-    self.socket_auth_token = SecureRandom.hex
+    self.socket_auth_token ||= SecureRandom.hex
     self.admin ||= false
+  end
+
+  def deck_limit
+    self.premium ? 100 : 3
+  end
+
+  def premium_price
+   self.premium_override_price || 999
   end
 
   def api_safe
@@ -16,7 +24,8 @@ class User < ActiveRecord::Base
       id: self.id,
       name: self.name,
       email: self.email,
-      admin: self.admin
+      admin: self.admin,
+      premium: self.premium
     }
   end
 end

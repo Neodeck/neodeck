@@ -9,6 +9,7 @@ RailsAdmin.config do |config|
       field :name
       field :email
       field :admin
+      field :premium
     end
 
     edit do

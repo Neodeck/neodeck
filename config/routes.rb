@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post 'auth' => 'auth#auth'
   post 'signup' => 'auth#newuser'
 
+  get 'premium' => 'premium#buy'
+  post 'premium' => 'premium#stripe'
+
   get 'decks/import' => 'decks#import'
   get 'decks/select' => 'decks#select'
   post 'decks/import' => 'decks#import_deck'

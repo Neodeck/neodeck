@@ -4,7 +4,7 @@
   <title><%= if @title then "#{@title} // " end %><%= $site_title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="https://<%= $socket_host %>/socket.io/socket.io.js" charset="utf-8"></script>
+  <script src="http://<%= $socket_host %>/socket.io/socket.io.js" charset="utf-8"></script>
   <%= csrf_meta_tags %>
 </head>
 <body data-no-turbolink>
@@ -17,6 +17,9 @@
             <%= link_to "New Deck", new_deck_path %> //
             <%= link_to "Import Deck", decks_import_path %> //
             <%= link_to "My Account", current_user %> //
+            <% unless current_user.premium %>
+              <%= link_to "Get Premium", premium_path %> //
+            <% end %>
             <% if current_user.admin %>
               <%= link_to "Admin", rails_admin_path %> //
             <% end %>
@@ -45,6 +48,9 @@
       ga('create', 'UA-78784564-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <% if flash[:error] %>
+      <script>alert("Error: <%= j flash[:error] %>")</script>
+    <% end %>
   </div>
 </body>
 </html>

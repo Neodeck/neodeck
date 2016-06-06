@@ -79,4 +79,6 @@ Rails.application.configure do
 
   $site_title = "CAH Creator"
   $socket_host = "socket.cahcreator.com"
+  $stripe_pub_key = ENV["STRIPE_PUB_KEY"]
+  Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
 end
