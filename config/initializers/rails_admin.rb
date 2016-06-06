@@ -10,9 +10,14 @@ RailsAdmin.config do |config|
       field :email
       field :admin
       field :premium
+      field :stripe_charge_id
     end
 
     edit do
+      field :name
+      field :email
+      field :admin
+      field :premium
       include_all_fields
       exclude_fields :password_digest
     end

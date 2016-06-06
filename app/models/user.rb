@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   def default_values
     self.socket_auth_token ||= SecureRandom.hex
     self.admin ||= false
+    self.premium ||= false
   end
 
   def deck_limit
