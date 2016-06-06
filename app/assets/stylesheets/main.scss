@@ -18,6 +18,10 @@ body{
   text-align: center;
 }
 
+.content-body, .header-inner, .footer-inner{
+  padding: 0 10px;
+}
+
 header{
   height: 75px;
   width: 100%;
