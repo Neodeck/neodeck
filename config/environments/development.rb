@@ -40,6 +40,7 @@ Rails.application.configure do
   $socket_host = "localhost:8080"
   $stripe_pub_key = "pk_test_wjdMqy4jpe6g4WtqWUyqmDge"
   Stripe.api_key = "sk_test_Doc8giv2yB8KLBxPvvKIlnt7"
+  # test
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
