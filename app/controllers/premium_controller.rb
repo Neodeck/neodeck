@@ -16,6 +16,7 @@ class PremiumController < ApplicationController
           :amount => current_user.premium_price,
           :currency => "usd",
           :source => token,
+          :receipt_email => current_user.email,
           :description => "CAH Creator Premium Account for #{current_user.email}",
           :metadata => {
             "user_id" => current_user.id
