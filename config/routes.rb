@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'socket_api/save_deck' => 'socket_api#save_deck'
 
   get 'api/deck/:id' => 'public_api#deck'
+
+  get 'partner/:partner' => 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
