@@ -2,15 +2,11 @@
   <%= @user.name %>'s Profile
 
   <% if @user.premium %>
-    <span class="premium-badge">
-      <%= link_to "Premium", premium_path %>
-    </span>
+    <%= link_to "Premium", premium_path, class: "premium-badge" %>
   <% end %>
 
   <% if @user.admin %>
-    <span class="admin-badge">
-      Admin
-    </span>
+    <span class="admin-badge">Admin</span>
   <% end %>
 </h1>
 
