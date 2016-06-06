@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
-  validates_uniqueness_of :socket_auth_token
-  validates_uniqueness_of :email
-  validates_presence_of :name
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, email_format: true
   has_many :decks
   after_initialize :default_values
 

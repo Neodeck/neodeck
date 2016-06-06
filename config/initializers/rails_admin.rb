@@ -18,6 +18,9 @@ RailsAdmin.config do |config|
       field :email
       field :admin
       field :premium
+      field :stripe_charge_id do |field|
+        help "Charge ID that Stripe sent if this user bought Premium."
+      end
       include_all_fields
       exclude_fields :password_digest
     end
