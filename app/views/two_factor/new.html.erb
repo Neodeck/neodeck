@@ -1,0 +1,19 @@
+<h1>New 2FA Method</h1>
+
+<p>
+  Scan this QR code with the Authy or Google Authenticator app:
+</p>
+
+<%= image_tag @method.qr_code %>
+
+<p>
+  Now enter the code that appears on your screen to verify that you've done
+  everything correctly:
+
+  <%= form_for :verify do |f| %>
+    <%= f.hidden_field :method_id, value: @method.id %>
+    Code: <%= f.text_field :code %>
+    <br><br>
+    <%= f.submit "Verify" %>
+  <% end %>
+</p>

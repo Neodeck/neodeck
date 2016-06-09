@@ -1,0 +1,14 @@
+<div class="login-box card black">
+  <%= form_for :user do |form| %>
+    <% if @then %>
+      <%= form.hidden_field :then, value: @then %>
+    <% end %>
+
+    <%= form.hidden_field :email, value: @email %>
+    <%= form.hidden_field :password, value: @password %>
+
+    My two-factor authentication code is <%= form.text_field :two_factor %>.
+    <%= form.button "Sign In" %>
+  <% end %>
+  <span class="black-card-pick-number">Pick 1</span>
+</div>

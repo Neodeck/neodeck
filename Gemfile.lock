@@ -139,6 +139,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
       netrc
+    rotp (3.0.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -189,6 +190,7 @@ DEPENDENCIES
   pg (~> 0.15)
   rails (= 4.2.6)
   rails_admin
+  rotp
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

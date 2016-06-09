@@ -9,11 +9,29 @@ class AuthController < ApplicationController
     if User.where(:email => params[:user][:email]).exists?
       user = User.where(:email => params[:user][:email]).first
       if user.authenticate(params[:user][:password])
-        session[:current_user_id] = user.id
-        if params[:user][:then]
-          redirect_to params[:user][:then]
+        if user.two_factor_count > 0 && !params[:user][:two_factor]
+          @email = params[:user][:email]
+          @password = params[:user][:password]
+          render "auth/twofactor"
+        elsif user.two_factor_count > 0 && params[:user][:two_factor]
+          if user.validate_two_factor_code(params[:user][:two_factor])
+            session[:current_user_id] = user.id
+            if params[:user][:then]
+              redirect_to params[:user][:then]
+            else
+              redirect_to root_path
+            end
+          else
+            flash[:error] = "Could not validate two-factor code."
+            redirect_to auth_path
+          end
         else
-          redirect_to root_path
+          session[:current_user_id] = user.id
+          if params[:user][:then]
+            redirect_to params[:user][:then]
+          else
+            redirect_to root_path
+          end
         end
       else
         flash[:error] = "Invalid email or password."

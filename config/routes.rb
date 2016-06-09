@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   get 'decks/import' => 'decks#import'
   get 'decks/select' => 'decks#select'
   post 'decks/import' => 'decks#import_deck'
+
+  get 'twofac' => 'two_factor#index'
+  get 'twofac/new' => 'two_factor#new'
+  get 'twofac/remove' => 'two_factor#remove'
+  post 'twofac/new' => 'two_factor#verify'
+
   resources :decks
   resources :users
 

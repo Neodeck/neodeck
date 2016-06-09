@@ -51,6 +51,10 @@
     <% if flash[:error] %>
       <script>alert("Error: <%= j flash[:error] %>")</script>
     <% end %>
+
+    <% if flash[:message] %>
+      <script>alert("<%= j flash[:message] %>")</script>
+    <% end %>
   </div>
 </body>
 </html>

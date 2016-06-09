@@ -1,0 +1,14 @@
+<h1>Two-Factor Authentication</h1>
+
+<p>
+  <% if current_user.two_factor_methods.count == 0 %>
+    Two-factor authentication is currently <b>disabled</b> on your account.
+    <%= link_to "Want to enable it?", twofac_new_path %>
+  <% else %>
+    Two-factor authentication is currently <b>enabled</b> on your account!
+    Good job! You are now a lot more secure than some other guy.
+    <br><br>
+    If you need to disable two-factor authentication, you can do so
+    <%= link_to "by clicking this link", twofac_remove_path %>.
+  <% end %>
+</p>
