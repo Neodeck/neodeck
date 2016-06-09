@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   $site_title = "CAH Creator"
-  $socket_host = "socket.cahcreator.com"
+  $socket_host = "https://socket.cahcreator.com"
   $stripe_pub_key = ENV["STRIPE_PUB_KEY"]
   Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
 end
