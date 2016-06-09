@@ -75,7 +75,7 @@ var CAHCreator = (function(){
 
   var connect = function(){
     console.log("Attempting connection to realtime server...");
-    socket = io.connect("wss://<%= $socket_host %>");
+    socket = io.connect("<%= $socket_host %>");
 
     socket.on("hello", function(){
       if(authToken){
@@ -107,6 +107,7 @@ var CAHCreator = (function(){
       session.deck.black_cards.forEach(addBlackCard);
       session.deck.white_cards.forEach(addWhiteCard);
       $("#deck-name").val(session.deck.name);
+      $("#deck-watermark").val(session.deck.watermark);
       setTitle("Editing " + session.deck.name);
       $(".deck-details").slideDown();
     });
@@ -152,6 +153,10 @@ var CAHCreator = (function(){
     $("#deck-name").on("keyup", function(){
       socket.emit("deck:name", $("#deck-name").val());
       setTitle("Editing " + $("#deck-name").val());
+    });
+
+    $("#deck-watermark").on("keyup", function(){
+      socket.emit("deck:watermark", $("#deck-watermark").val());
     });
 
     $("#new-black-card-input, #new-black-card-pick-input").keypress(function(e){

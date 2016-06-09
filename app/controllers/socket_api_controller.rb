@@ -24,13 +24,17 @@ class SocketApiController < ApplicationController
   end
 
   def save_deck
-    deck = Deck.find(params[:deck_id])
-    new_deck = params[:new_deck]
-    # validate some stuff...
-    if new_deck[:black_cards] then black_cards = Deck.validate_black_cards(new_deck[:black_cards]) else black_cards = [] end
-    if new_deck[:white_cards] then white_cards = Deck.validate_white_cards(new_deck[:white_cards]) else white_cards = [] end
-    deck.update(:name => new_deck[:name], :black_cards => black_cards, :white_cards => white_cards)
-    render json: { success: true }
+    begin
+      deck = Deck.find(params[:deck_id])
+      new_deck = params[:new_deck]
+      # validate some stuff...
+      if new_deck[:black_cards] then black_cards = Deck.validate_black_cards(new_deck[:black_cards]) else black_cards = [] end
+      if new_deck[:white_cards] then white_cards = Deck.validate_white_cards(new_deck[:white_cards]) else white_cards = [] end
+      deck.update(:name => new_deck[:name], :black_cards => black_cards, :white_cards => white_cards, :watermark => new_deck[:watermark])
+      render json: { success: true }
+    rescue
+      render json: { success: false }
+    end
   end
 
   def has_access_to_deck
