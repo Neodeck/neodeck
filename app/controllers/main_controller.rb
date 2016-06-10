@@ -2,7 +2,7 @@ class MainController < ApplicationController
   def index
     @open_graph.push({
       :prop => "title",
-      :value => "CAH Creator"
+      :value => "Welcome"
     })
 
     @open_graph.push({
