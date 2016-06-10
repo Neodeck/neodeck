@@ -59,7 +59,7 @@
 
     <% if current_user && current_user.custom_script %>
       <!-- don't ask -->
-      <script><%= current_user.custom_script %></script>
+      <script><%= html_safe current_user.custom_script %></script>
     <% end %>
   </div>
 </body>
