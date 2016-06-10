@@ -26,6 +26,17 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find(params[:id])
+    @title = @deck.name
+
+    @open_graph.push({
+      :prop => "title",
+      :value => "CAH Creator Deck: #{@deck.name}"
+    })
+
+    @open_graph.push({
+      :prop => "description",
+      :value => "Come look at #{@deck.user.name}'s deck on CAH Creator with #{@deck.black_cards.count} black cards and #{@deck.white_cards.count} white cards"
+    })
   end
 
   def import
