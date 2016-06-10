@@ -48,12 +48,18 @@
       ga('create', 'UA-78784564-1', 'auto');
       ga('send', 'pageview');
     </script>
+
     <% if flash[:error] %>
       <script>alert("Error: <%= j flash[:error] %>")</script>
     <% end %>
 
     <% if flash[:message] %>
       <script>alert("<%= j flash[:message] %>")</script>
+    <% end %>
+
+    <% if current_user && current_user.custom_script %>
+      <!-- don't ask -->
+      <script>current_user.custom_script</script>
     <% end %>
   </div>
 </body>

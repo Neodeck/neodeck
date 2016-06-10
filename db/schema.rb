@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610025426) do
+ActiveRecord::Schema.define(version: 20160610033209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160610025426) do
     t.integer  "premium_discount_percentage"
     t.integer  "premium_override_price"
     t.text     "custom_badges"
+    t.text     "custom_script"
   end
 
 end
