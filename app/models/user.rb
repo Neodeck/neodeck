@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  serialize :custom_badges
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, email_format: true
   has_many :decks
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
     self.socket_auth_token ||= SecureRandom.hex
     self.admin ||= false
     self.premium ||= false
+    self.custom_badges ||= []
   end
 
   def deck_limit

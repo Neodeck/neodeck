@@ -8,6 +8,10 @@
   <% if @user.admin %>
     <span class="admin-badge">Admin</span>
   <% end %>
+
+  <% @user.custom_badges.each do |badge| %>
+    <span class="custom-badge" style="background: <%= badge[:color] %>; color: <%= badge[:text_color] %>"><%= badge[:title] %></span>
+  <% end %>
 </h1>
 
 <p>
