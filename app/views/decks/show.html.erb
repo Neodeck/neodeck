@@ -4,10 +4,6 @@
   Created by <%= link_to @deck.user.name, @deck.user %>
 </p>
 
-<p>
-  Deck ID: <%= @deck.id %> (this is shown for legacy reasons)
-</p>
-
 <% if current_user && current_user == @deck.user || current_user && current_user.admin %>
   <p>
     <%= link_to "Edit this deck", edit_deck_path(@deck) %>
