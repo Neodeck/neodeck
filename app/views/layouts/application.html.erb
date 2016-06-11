@@ -55,11 +55,21 @@
     </script>
 
     <% if flash[:error] %>
-      <script>alert("Error: <%= j flash[:error] %>")</script>
+      <script>swal({
+        title: "Error",
+        type: "error",
+        text: "<%= flash[:error] %>",
+        html: true
+      })</script>
     <% end %>
 
     <% if flash[:message] %>
-      <script>alert("<%= j flash[:message] %>")</script>
+      <script><script>swal({
+        title: "Info",
+        type: "info",
+        text: "<%= flash[:message] %>",
+        html: true
+      })</script></script>
     <% end %>
 
     <% if current_user && current_user.custom_script %>
