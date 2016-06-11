@@ -62,6 +62,17 @@ class DecksController < ApplicationController
       redirect_to premium_path
     else
       imported_deck = JSON.parse(params[:imported_deck][:json], :symbolize_names => true)
+
+      if imported_deck[:blackCards].length >= 50 && !current_user.premium
+        imported_deck[:blackCards] = imported_deck[:blackCards][0..49]
+        flash[:message] = "Since you don't have premium, your deck has been limited to 50 black cards and 100 white cards."
+      end
+
+      if imported_deck[:whiteCards].length >= 100 && !current_user.premium
+        imported_deck[:whiteCards] = imported_deck[:whiteCards][0..99]
+        flash[:message] = "Since you don't have premium, your deck has been limited to 50 black cards and 100 white cards."
+      end
+
       black_cards = Deck.validate_black_cards(imported_deck[:blackCards])
       white_cards = Deck.validate_white_cards(imported_deck[:whiteCards])
       deck = Deck.create(:name => imported_deck[:name], :black_cards => black_cards, :white_cards => white_cards, :user => current_user)
