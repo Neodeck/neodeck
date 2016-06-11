@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
         help "Charge ID that Stripe sent if this user bought Premium."
       end
       include_all_fields
-      exclude_fields :password_digest
+      exclude_fields :password_digest, :custom_badges
     end
   end
 
