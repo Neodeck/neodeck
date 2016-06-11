@@ -148,6 +148,21 @@ var CAHCreator = (function(){
       window.location = "/";
     });
 
+    socket.on("session:limitreached", function(){
+      swal({
+        title: "Card limit reached!",
+        text: "Without premium, you can only create 50 black cards and 100 white cards per deck. Upgrade to premium to lift this limit!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Buy Premium",
+        cancelButtonText: "Oh, okay.",
+        closeOnConfirm: true,
+        html: false
+      }, function(){
+        window.open("/premium", "_blank");
+      });
+    });
+
     $("#save").click(save);
 
     $("#deck-name").on("keyup", function(){

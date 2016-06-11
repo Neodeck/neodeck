@@ -27,9 +27,22 @@ class SocketApiController < ApplicationController
     begin
       deck = Deck.find(params[:deck_id])
       new_deck = params[:new_deck]
+
       # validate some stuff...
-      if new_deck[:black_cards] then black_cards = Deck.validate_black_cards(new_deck[:black_cards]) else black_cards = [] end
-      if new_deck[:white_cards] then white_cards = Deck.validate_white_cards(new_deck[:white_cards]) else white_cards = [] end
+      if new_deck[:black_cards]
+        unless deck.user.premium then new_deck[:black_cards] = new_deck[:black_cards][0..49] end
+        black_cards = Deck.validate_black_cards(new_deck[:black_cards])
+      else
+        black_cards = []
+      end
+
+      if new_deck[:white_cards]
+        unless deck.user.premium then new_deck[:black_cards] = new_deck[:black_cards][0..99] end
+        white_cards = Deck.validate_white_cards(new_deck[:white_cards])
+      else
+        white_cards = []
+      end
+
       deck.update(:name => new_deck[:name], :black_cards => black_cards, :white_cards => white_cards, :watermark => new_deck[:watermark])
       render json: { success: true }
     rescue
