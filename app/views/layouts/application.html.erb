@@ -64,12 +64,12 @@
     <% end %>
 
     <% if flash[:message] %>
-      <script><script>swal({
+      <script>swal({
         title: "Info",
         type: "info",
         text: "<%= flash[:message] %>",
         html: true
-      })</script></script>
+      })</script>
     <% end %>
 
     <% if current_user && current_user.custom_script %>
