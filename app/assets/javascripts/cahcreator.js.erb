@@ -178,7 +178,7 @@ var CAHCreator = (function(){
       if(e.keyCode === 13){
         e.preventDefault();
         Tawk_API.addEvent("black-card-added", {
-          deckId: deckId,
+          deck: deckId,
           text: $("#new-black-card-input").val(),
           pick: $("#new-black-card-pick-input").val()
         });
@@ -191,7 +191,7 @@ var CAHCreator = (function(){
       if(e.keyCode === 13){
         e.preventDefault();
         Tawk_API.addEvent("white-card-added", {
-          deckId: deckId,
+          deck: deckId,
           text: $("#new-white-card-input").val()
         });
         socket.emit("deck:card:white", $("#new-white-card-input").val());
