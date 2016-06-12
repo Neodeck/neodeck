@@ -62,6 +62,7 @@
     <script type="text/javascript">
       // tawk.to
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      tawkReady = false;
       <% if current_user %>
       Tawk_API.visitor = {
         name: "<%= j current_user.name.html_safe %>",
@@ -72,6 +73,7 @@
         Tawk_API.setAttributes({
           id: "<%= current_user.id %>"
         });
+        tawkReady = true;
       };
       <% end %>
       (function(){

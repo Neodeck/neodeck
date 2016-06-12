@@ -177,6 +177,11 @@ var CAHCreator = (function(){
     $("#new-black-card-input, #new-black-card-pick-input").keypress(function(e){
       if(e.keyCode === 13){
         e.preventDefault();
+        Tawk_API.addEvent("black-card-added", {
+          deck_id: deckId,
+          text: $("#new-black-card-input").val(),
+          pick: $("#new-black-card-pick-input").val()
+        });
         socket.emit("deck:card:black", { text: $("#new-black-card-input").val(), pick: $("#new-black-card-pick-input").val() });
         $("#new-black-card-input, #new-black-card-pick-input").val("");
       }
@@ -185,6 +190,10 @@ var CAHCreator = (function(){
     $("#new-white-card-input, #new-white-card-pick-input").keypress(function(e){
       if(e.keyCode === 13){
         e.preventDefault();
+        Tawk_API.addEvent("white-card-added", {
+          deck_id: deckId,
+          text: $("#new-white-card-input").val()
+        });
         socket.emit("deck:card:white", $("#new-white-card-input").val());
         $("#new-white-card-input").val("");
       }
