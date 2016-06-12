@@ -67,6 +67,12 @@
         name: "<%= j current_user.name.html_safe %>",
         email: "<%= j current_user.email.html_safe %>"
       };
+
+      Tawk_API.onLoad = function(){
+        Tawk_API.setAttributes({
+          id: "<%= current_user.id %>"
+        });
+      };
       <% end %>
       (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
