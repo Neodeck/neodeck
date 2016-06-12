@@ -100,6 +100,10 @@ var CAHCreator = (function(){
         return "If you leave the page, all of your work will be gone!";
       };
       console.log("Received session info from realtime server.", session);
+      Tawk_API.addEvent("session-joined", {
+        session: session.sessionId,
+        token: session.sessionToken
+      });
       $("#realtime-status").remove();
       $(".editor-url").text("http://" + location.host + "/session/" + session.sessionId + "/" + session.sessionToken);
       deckId = session.deck.id;
