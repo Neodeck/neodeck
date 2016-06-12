@@ -64,7 +64,7 @@
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       <% if current_user %>
       Tawk_API.visitor = {
-        name: "<%= j current_user.name.html_safe %> (user id: <%= current_user.id %>)",
+        name: "<%= j current_user.name.html_safe %>",
         email: "<%= j current_user.email.html_safe %>"
       };
       <% end %>
