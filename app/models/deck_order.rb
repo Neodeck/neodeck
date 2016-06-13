@@ -30,6 +30,6 @@ class DeckOrder < ActiveRecord::Base
 
     # format it properly :)
     rate = $ups.find_rates(origin, dest, package).rates.sort_by(&:price)[0]
-    [rate.service_name, rate.price / 100.00]
+    [rate.service_name, (rate.price / 100.00) + 7.99]
   end
 end
