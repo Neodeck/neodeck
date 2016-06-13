@@ -18,28 +18,28 @@ class DecksController < ApplicationController
     validate_logged_in
     redirect_to root_path unless current_user.admin
 
-    deck = Deck.find(params[:id])
+    deck = Deck.find(params[:deck_id])
     file = ""
 
     deck.black_cards.each do |card|
       file += "[[#{card[:pick]}]]#{card[:text]}\n"
     end
 
-    render text: file
+    render plain: file
   end
 
   def generate_white_file
     validate_logged_in
     redirect_to root_path unless current_user.admin
 
-    deck = Deck.find(params[:id])
+    deck = Deck.find(params[:deck_id])
     file = ""
 
-    deck.black_cards.each do |card|
+    deck.white_cards.each do |card|
       file += "#{card}\n"
     end
 
-    render text: file
+    render plain: file
   end
 
   def new
