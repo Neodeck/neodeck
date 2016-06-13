@@ -1,0 +1,12 @@
+<h1>Order a Deck</h1>
+
+<p>
+  You can have your deck printed in the same size as CAH cards and shipped to
+  your doorstep! To start, click the deck you would like to purchase:
+</p>
+
+<div class="decks">
+  <% current_user.decks.order("id DESC").each do |deck| %>
+    <%= render partial: "decks/module_order", locals: { deck: deck } %>
+  <% end %>
+</div>

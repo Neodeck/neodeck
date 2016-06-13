@@ -1,0 +1,25 @@
+.order-details{
+  width: 100%;
+
+  th{
+    text-align: left;
+  }
+
+  th, td{
+    padding: 7px;
+    border-bottom: 1px solid black;
+  }
+}
+
+.order-button{
+  text-align: center;
+  margin-top: 15px;
+}
+
+.address{
+  input{
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+}

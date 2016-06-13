@@ -32,6 +32,8 @@ gem 'stripe'
 gem 'validates_email_format_of'
 # for 2fa
 gem 'rotp'
+# shipping costs :}
+gem 'active_shipping'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

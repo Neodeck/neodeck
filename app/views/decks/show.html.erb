@@ -8,6 +8,10 @@
   <p>
     <%= link_to "Edit this deck", edit_deck_path(@deck) %>
   </p>
+
+  <p>
+    <%= link_to "Order a print of this deck", new_deck_order_path(:deck => @deck.id) %>
+  </p>
 <% end %>
 
 <h3>Black Cards</h3>

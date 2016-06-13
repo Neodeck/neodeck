@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610033209) do
+ActiveRecord::Schema.define(version: 20160613040941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "deck_orders", force: :cascade do |t|
+    t.string   "shipping_line_1"
+    t.string   "shipping_line_2"
+    t.string   "shipping_country"
+    t.string   "shipping_city"
+    t.string   "shipping_zip"
+    t.boolean  "shipped"
+    t.string   "tracking_number"
+    t.float    "base_price"
+    t.float    "shipping_price"
+    t.integer  "user_id"
+    t.integer  "deck_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "stripe_charge_id"
+    t.string   "shipping_name"
+    t.string   "shipping_state"
+    t.boolean  "cancelled"
+  end
 
   create_table "decks", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160610033209) do
     t.integer  "premium_override_price"
     t.text     "custom_badges"
     t.text     "custom_script"
+    t.string   "stripe_customer_id"
   end
 
 end

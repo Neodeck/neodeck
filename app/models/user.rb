@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
     self.custom_badges ||= []
   end
 
+  def stripe_customer
+    if self.stripe_customer_id && self.stripe_customer_id != ""
+      Stripe::Customer.retrieve(self.stripe_customer_id)
+    else
+      nil
+    end
+  end
+
   def deck_limit
     self.premium ? 100 : 3
   end

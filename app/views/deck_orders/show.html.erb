@@ -1,0 +1,89 @@
+<h1>Order #<%= @order.id %></h1>
+
+<div class="section group">
+	<div class="col span_2_of_3">
+    Thanks for your order! From this page, you can check your order's shipping
+    status and estimated delivery date.
+
+    <h2>Shipping Details</h2>
+
+    <p>
+      <b>Shipped to:</b>
+      <br>
+      <%= @order.shipping_name %>
+      <br>
+      <%= @order.shipping_line_1 %>
+      <% if @order.shipping_line_2 && @order.shipping_line_2 != "" %>
+        <br>
+        <%= @order.shipping_line_2 %>
+      <% end %>
+      <br>
+      <%= @order.shipping_city %>, <%= @order.shipping_state %>, <%= @order.shipping_country %> <%= @order.shipping_zip %>
+    </p>
+
+    <p>
+      <% if @order.shipped %>
+        Your order has been shipped! You can view its status from the UPS package
+        tracker.
+        <br><br>
+        Tracking number: <%= link_to @order.tracking_number, @order.tracking_url %>
+      <% else %>
+        Your order hasn't shipped yet... stay tuned!
+      <% end %>
+    </p>
+
+    <h2>Refunds</h2>
+
+    <p>
+      <% if @order.shipped %>
+        Since your order has shipped and you agreed to our <%= link_to "refund policy", refunds_path %>,
+        you can't refund your order. If it has been delivered and you want to return
+        it, <%= link_to "click here", "javascript:Tawk_API.maximize()" %> to contact us.
+      <% else %>
+        If you want to refund your order, <%= link_to "click here", "javascript:Tawk_API.maximize()" %>
+        to contact us. If we're online, we will probably refund your order right then
+        and there. If we're not, then you'll get an email confirming your refund
+        when we review your request.
+      <% end %>
+    </p>
+
+    <h2>Contact Us</h2>
+
+    <p>
+      If you have any questions, don't hesitate to contact us!
+    </p>
+	</div>
+	<div class="col span_1_of_3">
+    <p class="center">
+      <b>Order Details</b>
+    </p>
+    <table class="order-details" cellspacing="0">
+     <tr>
+       <td>
+         <b>Printed Deck</b>
+         <br>
+         <%= @order.deck.name %>
+       </td>
+       <td>
+         $<%= '%.2f' % @order.base_price %>
+       </td>
+     </tr>
+     <tr>
+       <td>
+         <b>Shipping</b>
+       </td>
+       <td>
+         $<%= '%.2f' % @order.shipping_price %>
+       </td>
+     </tr>
+     <tr>
+       <td>
+         <b>Total</b>
+       </td>
+       <td>
+         <b>$<%= '%.2f' % (@order.base_price + @order.shipping_price) %></b>
+       </td>
+     </tr>
+    </table>
+	</div>
+</div>

@@ -78,7 +78,25 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   $site_title = "CAH Creator"
+
   $socket_host = "https://socket.cahcreator.com"
+
   $stripe_pub_key = ENV["STRIPE_PUB_KEY"]
   Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
+
+  $ship_from_country = ENV["SHIP_FROM_COUNTRY"]
+  $ship_from_state = ENV["SHIP_FROM_STATE"]
+  $ship_from_city = ENV["SHIP_FROM_CITY"]
+  $ship_from_zip = ENV["SHIP_FROM_ZIP"]
+
+  $ups_access_key = ENV["UPS_ACCESS_KEY"]
+  $ups_user_id = ENV["UPS_USER_ID"]
+  $ups_acct_number = ENV["UPS_ACCT_NUMBER"]
+  $ups_password = ENV["UPS_PASSWORD"]
+
+  $ups = ActiveShipping::UPS.new({
+    login: $ups_user_id,
+    password: $ups_password,
+    key: $ups_access_key
+  })
 end

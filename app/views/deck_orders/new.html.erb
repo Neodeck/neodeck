@@ -1,0 +1,132 @@
+<h1>Order Deck</h1>
+
+<div class="section group">
+	<div class="col span_2_of_3">
+	  <% if @quote %>
+			Review the total to the right, and if you're good with it, press the "buy"
+			button below your order details.
+
+			<p>
+				To review, here's where we'll be sending this deck to:
+			</p>
+
+			<p>
+				<%= @quote[:shipping_name] %>
+				<br>
+				<%= @quote[:shipping_line1] %>
+				<% if @quote[:shipping_line2] && @quote[:shipping_line2] != "" %>
+					<br>
+					<%= @quote[:shipping_line2] %>
+				<% end %>
+				<br>
+				<%= @quote[:city] %> <%= @quote[:shipping_zip] %>
+			</p>
+
+			<p>
+				If you want to change this, <%= link_to "go back", new_deck_order_path(:deck => @deck.id) %>.
+			</p>
+		<% else %>
+			To get an accurate estimate of your total, we need your shipping address.
+			Fill that out and press "Get Quote" to get a quote. This won't charge you
+			yet. This will also be used as your shipping address so that we know where
+			to ship your printed deck!
+
+			<h2>Order Description</h2>
+
+			<p>
+				You're ordering your custom deck, <%= @deck.name %>, to be printed, shippped
+				and delivered straight to your doorstep for use in real games of
+				Cards Against Humanity! It's like an expansion pack, but better (or worse),
+				since you made it!
+			</p>
+		<% end %>
+	</div>
+	<div class="col span_1_of_3">
+    <% if @quote %>
+      <p class="center">
+        <b>Order Details</b>
+      </p>
+      <table class="order-details" cellspacing="0">
+       <tr>
+         <td>
+           <b>Printed Deck</b>
+           <br>
+           <%= @deck.name %>
+         </td>
+         <td>
+           $<%= @quote[:deck_price] %>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <b>Shipping</b>
+           <br>
+           <%= @quote[:shipping_service] %>
+           <br>
+           <%= @quote[:city] %>
+         </td>
+         <td>
+           $<%= @quote[:shipping_price] %>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <b>Total</b>
+         </td>
+         <td>
+           <b>$<%= @quote[:total_price] %></b>
+         </td>
+       </tr>
+      </table>
+
+			<form action="<%= orders_order_path %>" method="POST" class="order-button">
+				<%= hidden_field :order, :deck_id, value: @deck.id %>
+				<%= hidden_field :order, :address_name, value: @quote[:address][:name] %>
+				<%= hidden_field :order, :address_line1, value: @quote[:address][:line1] %>
+				<%= hidden_field :order, :address_line2, value: @quote[:address][:line2] %>
+				<%= hidden_field :order, :address_country, value: @quote[:address][:country] %>
+				<%= hidden_field :order, :address_state, value: @quote[:address][:state] %>
+				<%= hidden_field :order, :address_city, value: @quote[:address][:city] %>
+				<%= hidden_field :order, :address_zip, value: @quote[:address][:zip] %>
+
+				<script
+					src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					data-key="<%= $stripe_pub_key %>"
+					data-amount="<%= @quote[:total_price_cents] %>"
+					data-name="CAH Creator"
+					data-description="Printed Custom Deck"
+					data-label="Buy Custom Deck"
+					data-email="<%= current_user.email %>"
+					data-image="https://avatars3.githubusercontent.com/u/15242410?v=3&s=200"
+					data-locale="auto">
+				</script>
+			</form>
+
+			<p class="center">
+				By clicking "Buy Custom Deck", you agree to our <%= link_to "refund policy", refunds_path, :target => "_blank" %>.
+			</p>
+    <% else %>
+      <p class="center">
+        <b>Shipping Address</b>
+
+				<% if @customer %>
+					<p class="center">
+						This was autofilled from your previous purchase.
+					</p>
+				<% end %>
+
+        <%= form_for :address, :url => orders_quote_path, :html => { class: "address" } do |f| %>
+          <%= f.hidden_field :deck_id, value: @deck.id %>
+					<%= f.text_field :name, :placeholder => "Shipping Name", :value => (@customer ? @customer["shipping"]["name"] : "") %>
+          <%= f.text_field :line1, :placeholder => "Address Line 1", :value => (@customer ? @customer["shipping"]["address"]["line1"] : "") %>
+          <%= f.text_field :line2, :placeholder => "Address Line 2", :value => (@customer ? @customer["shipping"]["address"]["line2"] : "") %>
+          <%= f.text_field :country, :maxlength => 2, :placeholder => "2-Letter Country Code", :value => (@customer ? @customer["shipping"]["address"]["country"] : "") %>
+          <%= f.text_field :city, :placeholder => "City", :value => (@customer ? @customer["shipping"]["address"]["city"] : "") %>
+          <%= f.text_field :state, :maxlength => 2, :placeholder => "2-Letter State/Province Code", :value => (@customer ? @customer["shipping"]["address"]["state"] : "") %>
+          <%= f.text_field :zip, :placeholder => "ZIP/Postal Code", :value => (@customer ? @customer["shipping"]["address"]["postal_code"] : "") %>
+          <%= f.submit "Get Quote" %>
+        <% end %>
+      </p>
+    <% end %>
+	</div>
+</div>

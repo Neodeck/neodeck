@@ -20,6 +20,14 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_shipping (1.7.3)
+      active_utils (~> 3.2.0)
+      activesupport (>= 3.2, < 5.0.0)
+      nokogiri (>= 1.6)
+      quantified (~> 1.0.1)
+    active_utils (3.2.0)
+      activesupport (>= 3.2)
+      i18n
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
@@ -88,6 +96,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    quantified (1.0.1)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -182,6 +191,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_shipping
   bcrypt
   byebug
   coffee-rails (~> 4.1.0)

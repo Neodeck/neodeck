@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipping_first_name: MyString
+  shipping_last_name: MyString
+  shipping_line_1: MyString
+  shipping_line_2: MyString
+  shipping_country: MyString
+  shipping_city: MyString
+  shipping_zip: MyString
+  shipped: false
+  tracking_number: MyString
+  base_price: 1.5
+  shipping_price: 1.5
+  user_id: 1
+  deck_id: 1
+
+two:
+  shipping_first_name: MyString
+  shipping_last_name: MyString
+  shipping_line_1: MyString
+  shipping_line_2: MyString
+  shipping_country: MyString
+  shipping_city: MyString
+  shipping_zip: MyString
+  shipped: false
+  tracking_number: MyString
+  base_price: 1.5
+  shipping_price: 1.5
+  user_id: 1
+  deck_id: 1

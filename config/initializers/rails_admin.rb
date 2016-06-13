@@ -40,6 +40,28 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'DeckOrder' do
+    list do
+      field :id
+      field :shipped
+      field :tracking_number
+      field :user
+      field :stripe_charge_id
+    end
+
+    edit do
+      field :shipping_name
+      field :shipping_line_1
+      field :shipping_line_2
+      field :shipping_city
+      field :shipping_state
+      field :shipping_country
+      field :shipping_zip
+      field :cancelled
+      include_all_fields
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

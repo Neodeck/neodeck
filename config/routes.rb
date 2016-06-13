@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'donate' => 'main#donate'
 
+  get 'refunds' => 'main#refunds'
+
   get 'auth' => 'auth#login'
   get 'signup' => 'auth#signup'
   get 'logout' => 'auth#logout'
@@ -21,6 +23,10 @@ Rails.application.routes.draw do
   get 'twofac/new' => 'two_factor#new'
   get 'twofac/remove' => 'two_factor#remove'
   post 'twofac/new' => 'two_factor#verify'
+
+  resources :deck_orders, path: 'orders'
+  post 'orders/quote' => 'deck_orders#quote'
+  post 'orders/order' => 'deck_orders#order'
 
   resources :decks
   resources :users
