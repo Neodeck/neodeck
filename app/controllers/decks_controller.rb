@@ -14,6 +14,34 @@ class DecksController < ApplicationController
     end
   end
 
+  def generate_black_file
+    validate_logged_in
+    redirect_to root_path unless current_user.admin
+
+    deck = Deck.find(params[:id])
+    file = ""
+
+    deck.black_cards.each do |card|
+      file += "[[#{card[:pick]}]]#{card[:text]}\n"
+    end
+
+    render text: file
+  end
+
+  def generate_white_file
+    validate_logged_in
+    redirect_to root_path unless current_user.admin
+
+    deck = Deck.find(params[:id])
+    file = ""
+
+    deck.black_cards.each do |card|
+      file += "#{card}\n"
+    end
+
+    render text: file
+  end
+
   def new
     validate_logged_in
     if current_user.decks.length >= current_user.deck_limit

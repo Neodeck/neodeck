@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   post 'orders/quote' => 'deck_orders#quote'
   post 'orders/order' => 'deck_orders#order'
 
-  resources :decks
+  resources :decks do
+    get '/genblack' => 'decks#generate_black_file'
+    get '/genwhite' => 'decks#generate_white_file'
+  end
   resources :users
 
   get 'session/:session_id/:session_token' => 'decks#edit_session'
