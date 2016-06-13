@@ -38,9 +38,9 @@
       <% if @order.shipped %>
         Since your order has shipped and you agreed to our <%= link_to "refund policy", refunds_path %>,
         you can't refund your order. If it has been delivered and you want to return
-        it, <%= link_to "click here", "javascript:Tawk_API.maximize()" %> to contact us.
+        it, <%= link_to "click here", "javascript:Tawk_API.popup()" %> to contact us.
       <% else %>
-        If you want to refund your order, <%= link_to "click here", "javascript:Tawk_API.maximize()" %>
+        If you want to refund your order, <%= link_to "click here", "javascript:Tawk_API.popup()" %>
         to contact us. If we're online, we will probably refund your order right then
         and there. If we're not, then you'll get an email confirming your refund
         when we review your request.
