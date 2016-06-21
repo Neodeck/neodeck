@@ -7,6 +7,43 @@ var CAHCreator = (function(){
       hostname,
       deckId;
 
+  var openCardcastDialog = function(){
+    swal({
+      title: "Import Cardcast",
+      text: "Paste your play code and press OK (found under deck name, it's 5 characters)",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      showLoaderOnConfirm: true
+    }, function(input){
+      getCardcastDeck(input, function(err){
+        if(err) swal("Error", "We couldn't get that deck :(", "error");
+      });
+    });
+  };
+
+  var getCardcastDeck = function(code, callback){
+    $.get("https://api.cardcastgame.com/v1/decks/" + code).then(function(deck){
+      $.get("https://api.cardcastgame.com/v1/decks/" + code + "/cards").then(function(cards){
+        var converted = convertCardcastDeck(deck, cards);
+        $("#imported_deck_json").val(JSON.stringify(converted));
+        $("button").click();
+      });
+    }).error(function(){
+      callback(true);
+    });
+  };
+
+  var convertCardcastDeck = function(deck, cards){
+    return {
+      name: deck.name,
+      description: deck.description,
+      watermark: "CC " + deck.code,
+      blackCards: cards.calls.map(function(call){ return { text:call.text.join("____"),pick:call.text.length-1 } }),
+      whiteCards: json.responses.map(function(res){ return res.text.join() })
+    };
+  };
+
   var setAuthToken = function(token){
     authToken = token;
   };
@@ -224,6 +261,7 @@ var CAHCreator = (function(){
     setSession: setSession,
     startEdit: startEdit,
     setTitle: setTitle,
-    selectDeck: selectDeck
+    selectDeck: selectDeck,
+    openCardcastDialog: openCardcastDialog
   };
 }());
