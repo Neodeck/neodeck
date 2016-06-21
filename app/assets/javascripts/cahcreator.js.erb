@@ -41,8 +41,8 @@ var CAHCreator = (function(){
       name: deck.name,
       description: deck.description,
       watermark: "CC " + deck.code,
-      blackCards: cards.calls.map(function(call){ return { text:call.text.join("____"),pick:call.text.length-1 } }),
-      whiteCards: json.responses.map(function(res){ return res.text.join() })
+      blackCards: cards.calls.map(function(call){ return { text: call.text.join("____"), pick: call.text.length-1 } }),
+      whiteCards: cards.responses.map(function(res){ return res.text.join() })
     };
   };
 
