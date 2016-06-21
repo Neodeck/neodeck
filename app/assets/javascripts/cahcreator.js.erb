@@ -16,21 +16,23 @@ var CAHCreator = (function(){
       closeOnConfirm: false,
       showLoaderOnConfirm: true
     }, function(input){
-      getCardcastDeck(input, function(err){
-        if(err) swal("Error", "We couldn't get that deck :(", "error");
-      });
+      if(input){
+        getCardcastDeck(input, function(err){
+          if(err) swal("Error", "We couldn't get that deck :(", "error");
+        });
+      }
     });
   };
 
   var getCardcastDeck = function(code, callback){
-    $.get("https://api.cardcastgame.com/v1/decks/" + code).then(function(deck){
+    $.get("https://api.cardcastgame.com/v1/decks/" + code).error(function(){
+      callback(true);
+    }).then(function(deck){
       $.get("https://api.cardcastgame.com/v1/decks/" + code + "/cards").then(function(cards){
         var converted = convertCardcastDeck(deck, cards);
         $("#imported_deck_json").val(JSON.stringify(converted));
         $("button").click();
       });
-    }).error(function(){
-      callback(true);
     });
   };
 
