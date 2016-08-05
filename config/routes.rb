@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get 'donate' => 'main#donate'
+  get 'faq' => 'main#faq'
 
   get 'refunds' => 'main#refunds'
 
