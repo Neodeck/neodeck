@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # bcrypt, for password hashing
 gem 'bcrypt'
 # admin
-gem 'rails_admin'
+gem 'rails_admin', github: 'sferik/rails_admin'
 # stripe
 gem 'stripe'
 # email validation
