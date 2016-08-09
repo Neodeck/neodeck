@@ -19,9 +19,13 @@ it would be much appreciated! (I will also give you free premium!)
 
 If your language doesn't exist on the Transifex page, please [let me know](mailto:me+cahcreator@tjhorner.com).
 
-**Translators:**
+#### Translators
 
-- Sean Roach
+Here's the list of extremely helpful translators and their respective method of
+donation. Please consider donating to them, they helped localize this project and
+let even more people access it!
+
+- Sean Roach (French, `fr`) (Donate: [$SeanRoach](https://cash.me/$SeanRoach))
 
 ### Coding
 
