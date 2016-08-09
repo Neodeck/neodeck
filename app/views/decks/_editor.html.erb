@@ -1,18 +1,18 @@
 <p>
-  Editor URL: <span class="editor-url"></span>
+  <%= t('editor_url') %>: <span class="editor-url"></span>
 </p>
 
-<h3>Black Cards</h3>
+<h3><%= t('black_cards') %></h3>
 <div class="black-cards">
   <div class="card black">
-    <textarea placeholder="Create a new black card" id="new-black-card-input"></textarea>
-    <input id="new-black-card-pick-input" placeholder="Pick #" type="number">
+    <textarea placeholder="<%= t('create_new_black') %>" id="new-black-card-input"></textarea>
+    <input id="new-black-card-pick-input" placeholder="<%= t('pick_number') %>" type="number">
   </div>
 </div>
 
-<h3>White Cards</h3>
+<h3><%= t('white_cards') %></h3>
 <div class="white-cards">
   <div class="card white">
-    <textarea placeholder="Create a new white card" id="new-white-card-input"></textarea>
+    <textarea placeholder="<%= t('create_new_white') %>" id="new-white-card-input"></textarea>
   </div>
 </div>

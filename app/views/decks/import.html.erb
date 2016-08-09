@@ -1,7 +1,7 @@
-<h1>Import Deck</h1>
+<h1><%= t('import_deck') %></h1>
 
 <p>
-  If you have some exported JSON from the old CAH Creator, you can import it here:
+  <%= t('import_description') %>
 </p>
 
 <%= form_for :imported_deck do |form| %>
@@ -9,12 +9,12 @@
     <%= form.text_area :json, :style => "width: 100%; height: 100px;" %>
   </p>
   <p>
-    <%= form.button "Import" %>
+    <%= form.button t('import') %>
   </p>
 <% end %>
 
 <p>
-  If you have a deck you want to import from Cardcast, click <a href="#" id="cardcastimport">here</a>.
+  <%= t('import_cardcast_description').html_safe %>
 </p>
 
 <script>$("#cardcastimport").click(CAHCreator.openCardcastDialog)</script>

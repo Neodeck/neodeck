@@ -1,39 +1,39 @@
-<h1>Deck: <%= @deck.name %></h1>
+<h1><%= t('deck') %>: <%= @deck.name %></h1>
 
 <p>
-  Created by <%= link_to @deck.user.name, @deck.user %>
+  <%= t('created_by') %> <%= link_to @deck.user.name, @deck.user %>
 </p>
 
 <% if current_user && current_user == @deck.user || current_user && current_user.admin %>
   <p>
-    <%= link_to "Edit this deck", edit_deck_path(@deck) %>
+    <%= link_to t('edit_this_deck'), edit_deck_path(@deck) %>
   </p>
 
   <p>
-    <%= link_to "Order a print of this deck", new_deck_order_path(:deck => @deck.id) %>
+    <%= link_to t('order_print'), new_deck_order_path(:deck => @deck.id) %>
   </p>
 <% end %>
 
-<h3>Black Cards</h3>
+<h3><%= t('black_cards') %></h3>
 <% if @deck.black_cards.count != 0 %>
   <% @deck.black_cards.each do |card| %>
     <%= render partial: "cards/black", locals: { card: card } %>
   <% end %>
 <% else %>
-  <i>There's nothing here...</i>
+  <i><%= t('nothing_here') %></i>
   <% if current_user && current_user == @deck.user %>
-    To add some cards, <%= link_to "edit the deck", edit_deck_path(@deck) %>!
+    <%= t('add_cards_help', edit_url: link_to(t('edit_the_deck'), edit_deck_path(@deck))).html_safe %>
   <% end %>
 <% end %>
 
-<h3>White Cards</h3>
+<h3><% t('white_cards') %></h3>
 <% if @deck.white_cards.count != 0 %>
   <% @deck.white_cards.each do |card| %>
     <%= render partial: "cards/white", locals: { card: card } %>
   <% end %>
 <% else %>
-  <i>There's nothing here...</i>
+  <i><%= t('nothing_here') %></i>
   <% if current_user && current_user == @deck.user %>
-    To add some cards, <%= link_to "edit the deck", edit_deck_path(@deck) %>!
+    <%= t('add_cards_help', edit_url: link_to(t('edit_the_deck'), edit_deck_path(@deck))).html_safe %>
   <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 <h1>
-  <%= @user.name %>'s Profile
+  <%= t('x_profile', username: @user.name) %>
 
   <% if @user.premium %>
     <%= link_to "Premium", premium_path, class: "premium-badge" %>
@@ -15,7 +15,7 @@
 </h1>
 
 <p>
-  <%= @user.name %> has created <%= @user.decks.count %> decks.
+  <%= t('x_has_created_x_decks', username: @user.name, decks: @user.decks.count) %>
   <% if @user.admin %>
     They are also an admin of CAH Creator.
   <% end %>

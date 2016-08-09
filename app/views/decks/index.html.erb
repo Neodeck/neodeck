@@ -1,4 +1,4 @@
-<h1>Latest Public Decks</h1>
+<h1><%= t('latest_decks') %></h1>
 
 <div class="decks">
   <% Deck.order("id DESC").limit(18).each do |deck| %>

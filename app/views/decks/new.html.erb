@@ -1,8 +1,8 @@
-<h1>New Deck</h1>
+<h1><%= t('new_deck') %></h1>
 
 <%= form_for :deck, url: decks_path do |form| %>
   <p>
-    Let's create a new deck.
+    <%= t('new_deck_description') %>
   </p>
 
   <p>

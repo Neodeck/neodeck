@@ -1,48 +1,40 @@
-<h1 class="center">Using CAH Creator is simple.</h1>
+<h1 class="center"><%= t('index_header') %></h1>
 
-<h2>1. Pick a name.</h2>
+<h2><%= t('index_step_one.header') %></h2>
 <p>
-  Pick a name, any name.* Be creative, this will show up in many places when
-  you publish it!
+  <%= t('index_step_one.content') %>
 </p>
 
-<h2>2. Add cards.</h2>
+<h2><%= t('index_step_two.header') %></h2>
 <p>
-  Add some black cards and some white cards, they'll save automatically. Don't
-  worry about losing your work.
+  <%= t('index_step_two.content') %>
 </p>
 
-<h2>3. Optional: Invite friends.</h2>
+<h2><%= t('index_step_three.header') %></h2>
 <p>
-  That is, uh, if you have any... you can invite friends to work on your deck
-  with you by sending them your special editor link while you're editing! You
-  will be able to see each others' work in <i>real time</i> with the magic of
-  WebSockets!
+  <%= t('index_step_three.content').html_safe %>
 </p>
 
-<h2>4. Publish.</h2>
+<h2><%= t('index_step_four.header') %></h2>
 <p>
-  Publish your deck for the world to see how horrible of a person you are. You've
-  earned it.
+  <%= t('index_step_four.content') %>
 </p>
 
-<h2>5. Play.</h2>
+<h2><%= t('index_step_five.header') %></h2>
 <p>
-  We worked with our main partner, <%= link_to "Cards Against Equestria", "http://cardsagainstequestria.com" %>,
-  to bring CAH Creator compatibility to it. Go ahead and start playing once
-  you're done making your deck!
+  <%= t('index_step_five.content', :cae_link => link_to(t('cards_against_equestria'), "https://cardsagainstequestria.com")).html_safe %>
 </p>
 
-<h1 class="center">What are you waiting for?!</h1>
+<h1 class="center"><%= t('index_button_header') %></h1>
 
 <p class="hero-button-wrapper">
   <% if current_user %>
     <a class="hero-button" href="<%= new_deck_path %>">
-      Create a deck
+      <%= t('index_button_text.create_deck') %>
     </a>
   <% else %>
     <a class="hero-button" href="<%= signup_path %>">
-      Sign up
+      <%= t('index_button_text.signup') %>
     </a>
   <% end %>
 </p>

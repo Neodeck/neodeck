@@ -1,23 +1,96 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  # LOGIN/SIGNUP
+  already_have_account: "I have an account already"
+  need_account: "I don't have an account"
+  # USERS
+  x_profile: "%{username}'s Profile"
+  x_has_created_x_decks: "%{username} has created %{decks} decks."
+  # HEADER
+  new_deck: "New Deck"
+  import_deck: "Import Deck"
+  my_account: "My Account"
+  admin: "Admin"
+  log_in: "Log In"
+  log_out: "Log Out"
+  get_premium: "Get Premium"
+  # INDEX PAGE
+  cards_against_equestria: "Cards Against Equestria"
+  index_header: "Using CAH Creator is simple."
+  index_step_one:
+    header: "1. Pick a name."
+    content: "Pick a name, any name. Be creative, this will show up in many places when you publish it!"
+  index_step_two:
+    header: "2. Add cards."
+    content: "Add some black cards and some white cards, they'll save automatically. Don't worry about losing your work."
+  index_step_three:
+    header: "3. Optional: Invite friends."
+    content: "That is, uh, if you have any... you can invite friends to work on your deck with you by sending them your special editor link while you're editing! You will be able to see each others' work in <i>real time</i> with the magic of WebSockets!"
+  index_step_four:
+    header: "4. Publish."
+    content: "Publish your deck for the world to see how horrible of a person you are. You've earned it."
+  index_step_five:
+    header: "5. Play."
+    content: "We worked with our main partner, %{cae_link}, to bring CAH Creator compatibility to it. Go ahead and start playing once you're done making your deck!"
+  index_button_header: "What are you waiting for?!"
+  index_button_text:
+    signup: "Sign up"
+    create_deck: "Create a deck"
+  # DECKS CONTROLLER
+  deck: "Deck"
+  created_by: "Created by"
+  edit_this_deck: "Edit this deck"
+  order_print: "Order a print of this deck"
+  nothing_here: "There's nothing here..."
+  edit_the_deck: "edit the deck" # this will be in the "edit_url" below
+  add_cards_help: "To add some cards, %{edit_url}!"
+  latest_decks: "Latest Public Decks"
+  select_deck: "Select Deck"
+  select_deck_description: "Select one of your decks to use in a Cards Against Equestria game."
+  contains_x_black_and_x_white: "Contains %{black_cards} black cards and %{white_cards} white cards."
+  black_cards: "Black Cards"
+  white_cards: "White Cards"
+  new_deck_description: "Let's create a deck."
+  # EDITOR
+  editor_url: "Editor URL"
+  editing_deck: "Editing Deck"
+  watermark: "Watermark"
+  loading_real_time_session: "Loading real-time session..."
+  status_saving: "Saving..."
+  create_new_black: "Create a new black card"
+  create_new_white: "Create a new white card"
+  error_needpremium: "Sorry, you can't edit this deck since there are already 2 editors editing. To lift this limit, tell the owner of this deck to purchase Premium!"
+  error_limitreached_title: "Card limit reached!"
+  error_limitreached_content: "Without premium, you can only create 50 black cards and 100 white cards per deck. Upgrade to premium to lift this limit!"
+  save_deck: "Save Deck"
+  pick: "Pick"
+  pick_number: "Pick #"
+  # IMPORT
+  import: "Import"
+  import_description: "If you have some exported JSON from the old CAH Creator, you can import it here:"
+  import_cardcast: "Import Cardcast"
+  import_cardcast_help: "Paste your play code and press OK (found under deck name, it's 5 characters)"
+  import_cardcast_error: "We couldn't get that deck :("
+  import_cardcast_description: "If you have a deck you want to import from Cardcast, click <a href='#' id='cardcastimport'>here</a>."
+  # DONATE
+  donate: "Donate"
+  donate_description: "Like CAH Creator? Want to keep it running? Lucky you! You can help us by donating via PayPal (and the best thing is that you don't need to have a PayPal account!)"
+  donate_cost: "This site actually costs money (around $8/mo, not much!) for me to run now, and based on the number of users on the old site, I thought I'd try to rely on users for the costs. All donations will go directly to the account I use to pay Heroku (and if there are any leftovers, I might get a cup of coffee)."
+  donate_benefits: "There aren't really any benefits right now, other than me being grateful, but I might soon add some sort of perk, but right now it just helps the site stay up. If you want benefits, you should check out Premium!"
+  donate_button_press: "If you want to donate, here's the button that you should press:"
+  # PREMIUM
+  premium_accounts: "Premium Accounts"
+  premium_description: "So you want to buy Premium, eh? Or maybe you're just wondering what it is. Well, it includes these never-before-seen features:"
+  premium_features:
+    lift_card_limit: "Lift the 50 black card and 100 white card limit on decks"
+    lift_deck_limit: "Lift the 3-deck limit"
+    simultaneous_editors: "Allow more than 2 simultaneous editors"
+    cool_badge: "A cool badge on your profile"
+    good_vibes: "Good vibes"
+    video: "A video of me thanking you (if you ask nicely)"
+    support: "Support the site!"
+  giveaways: "Giveaways"
+  giveaways_description: "I'm planning on doing Premium giveaways since this isn't really my main job and just a side project so, uh, look out for those I guess."
+  purchase: "Purchase"
+  donate_page: "donate page"
+  already_purchased: "It looks like you already have Premium. Nice! If you want to throw more money at us, take a gander at the %{donate_link}."
+  premium_technical_description: "Premium is a flat, one-time $9.99 payment. There aren't any fees or taxes. Your payment is secured by %{stripe_link} so we never see your credit card number."

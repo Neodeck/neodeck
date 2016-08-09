@@ -1,4 +1,4 @@
 <div class="deck-module">
   <h3><%= link_to deck.name, deck %></h3>
-  Contains <%= deck.black_cards.count %> black cards and <%= deck.white_cards.count %> white cards.
+  <%= t('contains_x_black_and_x_white', black_cards: deck.black_cards.count, white_cards: deck.white_cards.count) %>
 </div>

@@ -19,18 +19,18 @@
         <%= link_to "CAH Creator", root_path %>
         <div class="header-pull-right">
           <% if current_user %>
-            <%= link_to "New Deck", new_deck_path %> //
-            <%= link_to "Import Deck", decks_import_path %> //
-            <%= link_to "My Account", current_user %> //
+            <%= link_to t('new_deck'), new_deck_path %> //
+            <%= link_to t('import_deck'), decks_import_path %> //
+            <%= link_to t('my_account'), current_user %> //
             <% unless current_user.premium %>
-              <%= link_to "Get Premium", premium_path %> //
+              <%= link_to t('get_premium'), premium_path %> //
             <% end %>
             <% if current_user.admin %>
-              <%= link_to "Admin", rails_admin_path %> //
+              <%= link_to t('admin'), rails_admin_path %> //
             <% end %>
-            <%= link_to "Log Out", logout_path %>
+            <%= link_to t('log_out'), logout_path %>
           <% else %>
-            <%= link_to "Log In", auth_path %>
+            <%= link_to t('log_in'), auth_path %>
           <% end %>
         </div>
       </div>

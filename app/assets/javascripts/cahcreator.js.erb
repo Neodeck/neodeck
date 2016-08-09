@@ -9,8 +9,8 @@ var CAHCreator = (function(){
 
   var openCardcastDialog = function(){
     swal({
-      title: "Import Cardcast",
-      text: "Paste your play code and press OK (found under deck name, it's 5 characters)",
+      title: "<%= I18n.t('import_cardcast') %>",
+      text: "<%= I18n.t('import_cardcast_help') %>",
       type: "input",
       showCancelButton: true,
       closeOnConfirm: false,
@@ -18,7 +18,7 @@ var CAHCreator = (function(){
     }, function(input){
       if(input){
         getCardcastDeck(input, function(err){
-          if(err) swal("Error", "We couldn't get that deck :(", "error");
+          if(err) swal("Error", "<%= I18n.t('import_cardcast_error') %>", "error");
         });
       }
     });
@@ -108,7 +108,7 @@ var CAHCreator = (function(){
 
   var save = function(){
     window.onbeforeunload = function(){};
-    $("#save").text("Saving...").prop("disabled", true);
+    $("#save").text("<%= I18n.t('status_saving') %>").prop("disabled", true);
     socket.emit("deck:save");
   };
 
@@ -183,21 +183,21 @@ var CAHCreator = (function(){
 
     socket.on("deck:name", function(name){
       $("#deck-name").val(name);
-      setTitle("Editing " + name);
+      setTitle("<%= I18n.t('editing_deck') %>: " + name);
     });
 
     socket.on("session:needpremium", function(){
-      alert("Sorry, you can't edit this deck since there are already 2 editors editing. To lift this limit, tell the owner of this deck to purchase Premium!");
+      alert("<%= I18n.t('error_needpremium') %>");
       window.location = "/";
     });
 
     socket.on("session:limitreached", function(){
       swal({
-        title: "Card limit reached!",
-        text: "Without premium, you can only create 50 black cards and 100 white cards per deck. Upgrade to premium to lift this limit!",
+        title: "<%= I18n.t('error_limitreached_title') %>",
+        text: "<%= I18n.t('error_limitreached_content') %>",
         type: "warning",
         showCancelButton: true,
-        confirmButtonText: "Buy Premium",
+        confirmButtonText: "<%= I18n.t('get_premium') %>",
         cancelButtonText: "Oh, okay.",
         closeOnConfirm: true,
         html: false
