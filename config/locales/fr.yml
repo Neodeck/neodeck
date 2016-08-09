@@ -1,1 +1,36 @@
 fr:
+  already_have_account: "J'ai déjà un compte"
+  need_account: "Je n'ai pas de compte"
+  x_profile: "%{username}'s Profil"
+  x_has_created_x_decks: "%{username} a créé %{decks} paquet de cartes."
+  new_deck: "Nouveau paquet de cartes"
+  import_deck: "Importer paquet de cartes"
+  my_account: "Mon Compte"
+  admin: "Gestionnaire"
+  log_in: "Se Connecter"
+  log_out: "Se Déconnecter"
+  get_premium: "Obtenir la prime"
+  cards_against_equestria: "Cartes contre Equestria"
+  index_header: "À l'aide de CAH Creator est simple."
+  index_step_one:
+    header: "1. Choisissez un nom."
+    content: "Choisissez un nom, un nom quelconque. Soyez créatif, il apparaît dans de nombreux endroits lorsque vous publiez votre paquet de cartes!"
+  index_step_two:
+    header: "2. Ajoutez vos cartes."
+    content: "Ajouter quelques cartes en noir et blanc, ils vont enregistrer automatiquement. Alors ne vous inquiétez pas de perdre votre travail!"
+  index_step_three:
+    header: "3. Facultatif: Invitez des amis."
+    content: "Si vous avez des amis, vous pouvez les inviter à aider avec votre jeu de cartes en envoyant un lien vers un éditeur, lors de l'édition! Vous serez en mesure de voir leur travail en <i>temps réel</i> grâce à la magie de WebSockets"
+  index_step_four:
+    header: "4. Publier."
+    content: "Publiez votre deck pour le monde à voir et pour eux d'admirer quelle horreur d'une personne que vous êtes. Vous le méritez."
+  index_step_five:
+    header: "5. Jouer."
+    content: "Nous avons travaillé avec notre principal partenaire, %{cae_link}, pour assurer la compatibilité CAH Creator à elle. Allez-y et commencer à jouer une fois que vous avez terminé votre jeu de cartes!"
+  index_button_header: "Qu'est-ce que tu attends?!"
+  index_button_text:
+    signup: "Registre"
+    create_deck: "Créer un paquet de cartes"
+  deck: "Jouer aux cartes"
+  created_by: "Créé par"
+  edit_this_deck: "Modifier ces cartes"

@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :validate_logged_in
   before_filter :init_og_tags
+  before_action :set_locale
+
+  def set_locale
+    I18n.locale = params[:locale] || :en
+  end
 
   def init_og_tags
     @open_graph = []
