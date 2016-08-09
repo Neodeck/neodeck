@@ -10,7 +10,7 @@ fr:
   new_deck: "Nouveau paquet de cartes"
   import_deck: "Importer paquet de cartes"
   my_account: "Mon Compte"
-  admin: "Gestionnaire"
+  admin_header: "Gestionnaire"
   log_in: "Se Connecter"
   log_out: "Se Déconnecter"
   sign_up: "Registre"

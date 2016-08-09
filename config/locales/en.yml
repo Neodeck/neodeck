@@ -21,7 +21,7 @@ en:
   new_deck: "New Deck"
   import_deck: "Import Deck"
   my_account: "My Account"
-  admin: "Admin"
+  admin_header: "Admin"
   log_in: "Log In"
   log_out: "Log Out"
   sign_up: "Sign Up"
