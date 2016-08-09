@@ -84,6 +84,7 @@ en:
   save_deck: "Save Deck"
   pick: "Pick"
   pick_number: "Pick #"
+  name: "Name"
 
   # IMPORT
 

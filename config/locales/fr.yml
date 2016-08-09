@@ -17,6 +17,7 @@ fr:
   get_premium: "Obtenir la prime"
   cards_against_equestria: "Cartes Contre Equestria"
   index_header: "À l'aide de CAH Creator est simple."
+  name: "Nom"
   index_step_one:
     header: "1. Choisissez un nom."
     content: "Choisissez un nom, un nom quelconque. Soyez créatif, il apparaît dans de nombreux endroits lorsque vous publiez votre paquet de cartes!"
