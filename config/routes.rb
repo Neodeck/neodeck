@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'donate' => 'main#donate'
   get 'faq' => 'main#faq'
 
+  get 'locale' => 'main#switch_locale'
+
   get 'refunds' => 'main#refunds'
 
   get 'auth' => 'auth#login'

@@ -22,4 +22,14 @@ class MainController < ApplicationController
       :value => "You should really read this before asking a question."
     })
   end
+
+  def switch_locale
+    session[:locale] = params[:lang]
+    
+    begin
+      redirect_to :back
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+    end
+  end
 end
