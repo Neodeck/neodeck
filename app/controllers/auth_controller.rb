@@ -1,5 +1,6 @@
 class AuthController < ApplicationController
   def login
+    @title = I18n.t('log_in')
     if params[:then]
       @then = params[:then]
     end

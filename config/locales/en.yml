@@ -1,4 +1,11 @@
 en:
+  # OPEN GRAPH TEXTS
+
+  welcome: "Welcome"
+  site_description: "Make your own Cards Against Humanity decks in realtime with friends, then play with them in a game of CAH!"
+  meta_deck_description: "Come look at %{username}'s deck on CAH Creator with %{black_cards} black cards and %{white_cards} white cards"
+  meta_user_description: "Come look at %{username}'s %{deck_count} decks on CAH Creator"
+
   # LOGIN/SIGNUP
 
   already_have_account: "I have an account already"
@@ -17,6 +24,7 @@ en:
   admin: "Admin"
   log_in: "Log In"
   log_out: "Log Out"
+  sign_up: "Sign Up"
   get_premium: "Get Premium"
 
   # INDEX PAGE

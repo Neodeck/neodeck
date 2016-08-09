@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
   def create
     if current_user.decks.length >= current_user.deck_limit
-      flash[:error] = "Deck limit reached! To raise this limit, please purchase a Premium account."
+      flash[:error] = I18n.t('error_needpremium')
       redirect_to premium_path
     else
       new_deck = Deck.create(:name => params[:deck][:name], :user => current_user)
@@ -45,10 +45,10 @@ class DecksController < ApplicationController
   def new
     validate_logged_in
     if current_user.decks.length >= current_user.deck_limit
-      flash[:error] = "Deck limit reached! To raise this limit, please purchase a Premium account."
+      flash[:error] = I18n.t('error_needpremium')
       redirect_to premium_path
     else
-      @title = "New Deck"
+      @title = I18n.t('new_deck')
     end
   end
 
@@ -58,35 +58,35 @@ class DecksController < ApplicationController
 
     @open_graph.push({
       :prop => "title",
-      :value => "CAH Creator Deck: #{@deck.name}"
+      :value => "CAH Creator #{I18n.t('deck')}: #{@deck.name}"
     })
 
     @open_graph.push({
       :prop => "description",
-      :value => "Come look at #{@deck.user.name}'s deck on CAH Creator with #{@deck.black_cards.count} black cards and #{@deck.white_cards.count} white cards"
+      :value => I18n.t('meta_deck_description', username: @deck.user.name, black_cards: @deck.black_cards.count, white_cards: @deck.white_cards.count)
     })
   end
 
   def import
     validate_logged_in
     if current_user.decks.length >= current_user.deck_limit
-      flash[:error] = "Deck limit reached! To raise this limit, please purchase a Premium account."
+      flash[:error] = I18n.t('error_needpremium')
       redirect_to premium_path
     else
-      @title = "Import Deck"
+      @title = I18n.t('import_deck')
     end
   end
 
   def select
     validate_logged_in
-    @title = "Select Deck"
+    @title = I18n.t('select_deck')
     @user = current_user
   end
 
   def import_deck
     validate_logged_in
     if current_user.decks.length >= current_user.deck_limit
-      flash[:error] = "Deck limit reached! To raise this limit, please purchase a Premium account."
+      flash[:error] = I18n.t('error_needpremium')
       redirect_to premium_path
     else
       imported_deck = JSON.parse(params[:imported_deck][:json], :symbolize_names => true)

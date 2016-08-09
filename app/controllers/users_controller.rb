@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
     @open_graph.push({
       :prop => "title",
-      :value => "#{@user.name}'s Profile on CAH Creator"
+      :value => "#{I18n.t('x_profile', username: @user.name)} on CAH Creator"
     })
 
     @open_graph.push({
       :prop => "description",
-      :value => "Come look at #{@user.name}'s #{@user.decks.count} decks on CAH Creator"
+      :value => I18n.t('meta_user_description', username: @user.name, deck_count: @user.decks.count)
     })
 
     @open_graph.push({
