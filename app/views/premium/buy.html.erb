@@ -24,7 +24,7 @@
 
 <% if current_user.premium %>
   <p>
-    <%= t('already_purchased', donate_link: link_to(t('donate_page'), donate_path)) %>
+    <%= t('already_purchased', donate_link: link_to(t('donate_page'), donate_path)).html_safe %>
   </p>
 <% else %>
   <p>
