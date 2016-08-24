@@ -25,7 +25,8 @@ Here's the list of extremely helpful translators and their respective method of
 donation. Please consider donating to them, they helped localize this project and
 let even more people access it!
 
-- Sean Roach (French, `fr`) (Donate: [$SeanRoach](https://cash.me/$SeanRoach))
+- [Sean Roach](https://cahcreator.com/users/7) (French, `fr`) (Donate: [$SeanRoach](https://cash.me/$SeanRoach))
+- [Konstantinos Mihalenas](https://cahcreator.com/users/525) (Greek, `el`)
 
 ### Coding
 
